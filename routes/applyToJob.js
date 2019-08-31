@@ -29,12 +29,17 @@ exports = module.exports = function (app, mongoose) {
 
 
     router.post('/apply', upload.single('CV'), async (req, res) => {
-      
+
         var { candidateEmail, jobId } = req.body
 
         try {
+
             if (!candidateEmail || !jobId) {
                 return res.send({ success: false, message: "Please Send Data" })
+            }
+
+            if (!ObjectID.isValid(jobId)) {
+                return res.send({ success: false, message: "Please Send Correct ID" });
             }
 
             if (!req.file) {
@@ -51,16 +56,13 @@ exports = module.exports = function (app, mongoose) {
                 return res.send({ success: false, message: 'No Job Found' })
             }
 
-
             var isUpdateAllowed = foundJob.CVS.every(item => candidateEmail !== item.email);
-
 
             if (!isUpdateAllowed) {
                 return res.send({ success: false, message: "You have already applied on this job" })
             }
 
             const uploadedCV = await cloudinary.v2.uploader.upload(req.file.path, { resource_type: "auto" })
-            console.log(uploadedCV)
 
             await app.db.models.Job.updateOne({ _id: jobId }, {
                 $addToSet: { CVS: { email: candidateEmail, cvLink: uploadedCV.secure_url } }

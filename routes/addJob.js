@@ -29,6 +29,7 @@ exports = module.exports = function (app, mongoose) {
                 res.send({ success: true, message: "Job Posted Successfully", newJob })
             })
         } catch (err) {
+            res.send({ success: false, message: 'Something went wrong please try again later' })
 
         }
 
