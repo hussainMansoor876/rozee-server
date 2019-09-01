@@ -5,7 +5,7 @@ exports = module.exports = function (app, mongoose) {
     var { ObjectID } = require('mongodb')
 
     router.post('/addNewJob', async (req, res, ) => {
-        const { posterId, jobTitle, jobDescription } = req.body
+        const { posterId, jobTitle, jobDescription, salary } = req.body
 
         try {
             if (!ObjectID.isValid(posterId)) {
@@ -19,7 +19,7 @@ exports = module.exports = function (app, mongoose) {
 
             }
 
-            let job = new app.db.models.Job({ posterId, jobTitle, jobDescription })
+            let job = new app.db.models.Job({ posterId, jobTitle, jobDescription, salary })
 
             job.save((err, newJob) => {
                 if (err) {

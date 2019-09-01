@@ -9,6 +9,7 @@ exports = module.exports = function (app, mongoose) {
             const loginUser = await app.db.models.User.findOne({ email })
 
             console.log(loginUser)
+            console.log("PASSWORD", password)
 
             if (loginUser) {
 

@@ -23,6 +23,9 @@ exports = module.exports = function (app, mongoose) {
             default: Date.now()
         },
 
+        salary: {
+            type: Number
+        },
         CVS: [{
             email: {
                 type: String,
