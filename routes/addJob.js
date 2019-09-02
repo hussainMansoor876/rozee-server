@@ -5,9 +5,14 @@ exports = module.exports = function (app, mongoose) {
     var { ObjectID } = require('mongodb')
 
     router.post('/addNewJob', async (req, res, ) => {
-        const { posterId, jobTitle, jobDescription, salary } = req.body
+        const { posterId, jobTitle, jobDescription, role, location } = req.body
 
         try {
+
+            if (!posterId || !jobTitle || !jobDescription || !role || !location) {
+                return res.send({ success: false, message: "Please Send Data" })
+            }
+
             if (!ObjectID.isValid(posterId)) {
                 return res.send({ success: false, message: "Please Send Correct ID" });
             }
@@ -19,7 +24,7 @@ exports = module.exports = function (app, mongoose) {
 
             }
 
-            let job = new app.db.models.Job({ posterId, jobTitle, jobDescription, salary })
+            let job = new app.db.models.Job({ posterId, jobTitle, jobDescription, role, location })
 
             job.save((err, newJob) => {
                 if (err) {
