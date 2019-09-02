@@ -13,7 +13,7 @@ exports = module.exports = function (app, mongoose) {
                 return res.send({ success: false, message: "Please Send Correct ID" });
             }
 
-            const jobs = await app.db.models.Job.find({ posterId })
+            const jobs = await app.db.models.Job.find({ posterId }).sort({createdAt: 'desc'})
 
             if (!jobs.length) {
                 return res.send({
