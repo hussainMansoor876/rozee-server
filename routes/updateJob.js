@@ -19,7 +19,7 @@ exports = module.exports = function (app, mongoose) {
 
             const foundJob = await app.db.models.Job.findOne({ _id: jobId })
 
-            if(!foundJob){
+            if (!foundJob) {
                 return res.send({ success: false, message: "Cannot find job" })
             }
 
@@ -46,6 +46,33 @@ exports = module.exports = function (app, mongoose) {
         }
 
     });
+
+
+    router.post("/removeJob", async (req, res) => {
+        const { jobId } = req.body
+
+        try {
+
+            const foundJob = await app.db.models.Job.findOne({ _id: jobId })
+
+            if (!foundJob) {
+                return res.send({ success: false, message: "Cannot find job" })
+            }
+
+            const deleted = await app.db.models.Job.findOneAndRemove({ _id: jobId })
+
+            if (!deleted) {
+                return res.send({ success: false, message: "Cannot remove job" })
+            }
+
+            res.send({ success: true, message: "Job Removed"})
+
+
+        } catch (err) {
+            res.send({ success: false, message: "Something went wrong please try again later", err: err.message })
+
+        }
+    })
 
     app.use('/job', router);
 
