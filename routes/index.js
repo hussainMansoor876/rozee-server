@@ -6,4 +6,5 @@ exports = module.exports = function (app, mongoose) {
   require("./applyToJob")(app, mongoose)
   require('./getJobs')(app, mongoose)
   require('./getSingleJob')(app, mongoose)
+  require('./updateJob')(app,mongoose);
 };
