@@ -22,7 +22,14 @@ app.use('*', (req, res, next) => {
 
   console.log('Entering log level')
 
-  const domains = ["http://localhost:3000", 'https://rozee-client.herokuapp.com', 'http://rozee-client.herokuapp.com']
+  const domains = [
+    "http://localhost:3000",
+    'https://rozee-client.herokuapp.com',
+    'http://rozee-client.herokuapp.com',
+    "https://rozee-user.herokuapp.com",
+    'http://rozee-user.herokuapp.com/'
+    
+  ]
   var origin = req.headers.origin;
   app.logLevel1("origin >>> ", origin);
 
