@@ -9,6 +9,7 @@ exports = module.exports = function(app, mongoose){
 
 
     router.post('/', async (req, res) => {
+        console.log(app.get('SENDER_EMAIL'))
         const {name, email, phone, message } = req.body
         try{
             if(!name || !email || !phone || !message){
@@ -17,7 +18,7 @@ exports = module.exports = function(app, mongoose){
 
             const emailContent = {
                 from: app.get('SENDER_EMAIL'),
-                to: "asadikhlas03@gmail.com",
+                to: app.get('RECIEVER_EMAIL'),
                 subject: "247 IT international help",
                 text: "Help message to 247 IT international",
                 html:`<h3>Email Address: <span> ${email} </span></h3>
