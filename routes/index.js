@@ -9,4 +9,5 @@ exports = module.exports = function (app, mongoose) {
   require('./updateJob')(app, mongoose);
   require('./uploadCV')(app, mongoose)
   require('./getAllCV')(app, mongoose)
+  require('./helpers')(app, mongoose)
 };
