@@ -35,7 +35,6 @@ exports = module.exports = function (app, mongoose) {
             })
         } catch (err) {
             res.send({ success: false, message: 'Something went wrong please try again later' })
-
         }
 
     });
