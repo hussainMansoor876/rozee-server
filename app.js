@@ -30,7 +30,8 @@ app.use('*', (req, res, next) => {
     'http://rozee-user.herokuapp.com/',
     'http://rozeeadmin.codesation.com',
     'http://rozee.codesation.com/',
-    '247itinternational.com'
+    'http://247itinternational.com',
+    'http://247itinternational.co.uk'
     
   ]
   var origin = req.headers.origin;
