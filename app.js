@@ -32,8 +32,8 @@ app.use('*', (req, res, next) => {
     'http://rozee.codesation.com/',
     'http://247itinternational.com',
     'http://247itinternational.co.uk',
-    'http://admin.247itinternational.com'
-    
+    'http://admin.247itinternational.com',
+    'http://www.247itinternational.com/'    
   ]
   var origin = req.headers.origin;
   app.logLevel1("origin >>> ", origin);
